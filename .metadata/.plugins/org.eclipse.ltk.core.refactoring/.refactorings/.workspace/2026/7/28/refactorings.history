@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;okyunErpReport/invoice_logo.png&apos;" deleteContents="false" description="Delete resource &apos;okyunErpReport/invoice_logo.png&apos;" element1="/okyunErpReport/invoice_logo.png" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1783873772662"/>
+</session>

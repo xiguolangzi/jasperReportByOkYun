@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.0 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" 
+              name="sales_order" pageWidth="595" pageHeight="842" columnWidth="555" 
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" 
+              whenResourceMissingType="Empty" 
+              isIgnorePagination="false">
+    
+    <!-- 定义字体（解决中文乱码） -->
+    <property name="net.sf.jasperreports.default.font.name" value="宋体"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="STSong-Light"/>
+    <property name="net.sf.jasperreports.default.pdf.encoding" value="UniGB-UCS2-H"/>
+    
+    <!-- 导入自定义字体（如果有） -->
+    <import value="java.util.*"/>
+    <import value="net.sf.jasperreports.engine.*"/>
+    <import value="net.sf.jasperreports.engine.data.*"/>
+    
+    <!-- 参数定义 -->
+    <parameter name="orderInitNo" class="java.lang.String"/>
+    <parameter name="orderNo" class="java.lang.String"/>
+    <parameter name="createTime" class="java.lang.String"/>
+    <parameter name="userName" class="java.lang.String"/>
+    <parameter name="warehouseName" class="java.lang.String"/>
+    <parameter name="cajaName" class="java.lang.String"/>
+    <parameter name="totalQuantity" class="java.math.BigDecimal"/>
+    <parameter name="totalAmount" class="java.math.BigDecimal"/>
+    <parameter name="totalDiscountAmount" class="java.math.BigDecimal"/>
+    <parameter name="totalSalesAmount" class="java.math.BigDecimal"/>
+    <parameter name="customerNombre" class="java.lang.String"/>
+    <parameter name="customerNif" class="java.lang.String"/>
+    <parameter name="customerPhone" class="java.lang.String"/>
+    <parameter name="customerEmail" class="java.lang.String"/>
+    <parameter name="customerAddressDetail" class="java.lang.String"/>
+    
+    <!-- 字段定义（对应OrderDetailReportData） -->
+    <field name="rowIndex" class="java.lang.Integer"/>
+    <field name="skuNo" class="java.lang.String"/>
+    <field name="skuName" class="java.lang.String"/>
+    <field name="detailQuantity" class="java.math.BigDecimal"/>
+    <field name="skuPrice" class="java.math.BigDecimal"/>
+    <field name="detailDiscountRate" class="java.math.BigDecimal"/>
+    <field name="detailSalesAmount" class="java.math.BigDecimal"/>
+    <field name="detailTaxRate" class="java.math.BigDecimal"/>
+    
+    <!-- 标题 -->
+    <title>
+        <band height="120">
+            <!-- 订单标题 -->
+            <staticText>
+                <reportElement x="200" y="0" width="200" height="40" 
+                              forecolor="#000000" backcolor="#FFFFFF"/>
+                <textElement textAlignment="Center">
+                    <font size="20" isBold="true"/>
+                </textElement>
+                <text><![CDATA[销售订单]]></text>
+            </staticText>
+            
+            <!-- 订单号 -->
+            <staticText>
+                <reportElement x="380" y="10" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[订单编号：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="10" width="120" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{orderInitNo}]]></textFieldExpression>
+            </textField>
+            
+            <!-- 创建时间 -->
+            <staticText>
+                <reportElement x="380" y="30" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[创建日期：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="30" width="120" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{createTime}]]></textFieldExpression>
+            </textField>
+            
+            <!-- 分割线 -->
+            <line>
+                <reportElement x="0" y="60" width="555" height="1"/>
+                <graphicElement>
+                    <pen lineWidth="1"/>
+                </graphicElement>
+            </line>
+            
+            <!-- 客户信息 -->
+            <staticText>
+                <reportElement x="0" y="70" width="60" height="20"/>
+                <textElement/>
+                <text><![CDATA[客户信息：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="70" y="70" width="200" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{customerNombre} == null ? "" : $P{customerNombre}]]></textFieldExpression>
+            </textField>
+            
+            <!-- 仓库信息 -->
+            <staticText>
+                <reportElement x="380" y="70" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[仓库：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="70" width="120" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$P{warehouseName} == null ? "" : $P{warehouseName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    
+    <!-- 表头 -->
+    <columnHeader>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="30" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[序号]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="30" y="0" width="100" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[商品编码]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="130" y="0" width="120" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[商品名称]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="250" y="0" width="60" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[数量]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="310" y="0" width="70" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[单价]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="380" y="0" width="60" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[折扣%]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="440" y="0" width="115" height="30" 
+                              backcolor="#E8E8E8"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[小计]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    
+    <!-- 明细数据 -->
+    <detail>
+        <band height="25">
+            <textField>
+                <reportElement x="0" y="0" width="30" height="25"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{rowIndex}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="30" y="0" width="100" height="25"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{skuNo}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="130" y="0" width="120" height="25"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{skuName}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="250" y="0" width="60" height="25"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{detailQuantity}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="310" y="0" width="70" height="25"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{skuPrice}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="380" y="0" width="60" height="25"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{detailDiscountRate}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="440" y="0" width="115" height="25"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{detailSalesAmount}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    
+    <!-- 合计 -->
+    <summary>
+        <band height="100">
+            <line>
+                <reportElement x="0" y="0" width="555" height="1"/>
+                <graphicElement>
+                    <pen lineWidth="1"/>
+                </graphicElement>
+            </line>
+            
+            <staticText>
+                <reportElement x="380" y="5" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[总数量：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="5" width="115" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$P{totalQuantity}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="380" y="25" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[总金额：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="25" width="115" height="20"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["¥" + $P{totalAmount}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="380" y="45" width="60" height="20"/>
+                <textElement textAlignment="Right"/>
+                <text><![CDATA[折扣：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="45" width="115" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["¥" + $P{totalDiscountAmount}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="380" y="65" width="60" height="20"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true" size="14"/>
+                </textElement>
+                <text><![CDATA[实收：]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="440" y="65" width="115" height="20"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true" size="14" forecolor="#FF0000"/>
+                </textElement>
+                <textFieldExpression><![CDATA["¥" + $P{totalSalesAmount}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+    
+</jasperReport>

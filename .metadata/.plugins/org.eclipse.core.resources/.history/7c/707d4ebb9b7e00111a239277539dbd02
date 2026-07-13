@@ -1,0 +1,138 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="sales_order" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
+	<property name="net.sf.jasperreports.default.font.name" value="宋体"/>
+	<property name="net.sf.jasperreports.default.pdf.font.name" value="STSong-Light"/>
+	<property name="net.sf.jasperreports.default.pdf.encoding" value="UniGB-UCS2-H"/>
+	<import>net.sf.jasperreports.engine.*</import>
+	<import>java.util.*</import>
+	<import>net.sf.jasperreports.engine.data.*</import>
+	<parameter name="orderInitNo" class="java.lang.String"/>
+	<parameter name="orderNo" class="java.lang.String"/>
+	<parameter name="createTime" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="warehouseName" class="java.lang.String"/>
+	<parameter name="cajaName" class="java.lang.String"/>
+	<parameter name="totalQuantity" class="java.math.BigDecimal"/>
+	<parameter name="totalAmount" class="java.math.BigDecimal"/>
+	<parameter name="totalDiscountAmount" class="java.math.BigDecimal"/>
+	<parameter name="totalSalesAmount" class="java.math.BigDecimal"/>
+	<parameter name="customerNombre" class="java.lang.String"/>
+	<parameter name="customerNif" class="java.lang.String"/>
+	<parameter name="customerPhone" class="java.lang.String"/>
+	<parameter name="customerEmail" class="java.lang.String"/>
+	<parameter name="customerAddressDetail" class="java.lang.String"/>
+	<field name="rowIndex" class="java.lang.Integer"/>
+	<field name="skuNo" class="java.lang.String"/>
+	<field name="skuName" class="java.lang.String"/>
+	<field name="detailQuantity" class="java.math.BigDecimal"/>
+	<field name="skuPrice" class="java.math.BigDecimal"/>
+	<field name="detailDiscountRate" class="java.math.BigDecimal"/>
+	<field name="detailSalesAmount" class="java.math.BigDecimal"/>
+	<field name="detailTaxRate" class="java.math.BigDecimal"/>
+	<title height="120">
+		<element kind="staticText" uuid="6b39e405-9df7-48c3-a38a-044fda8818f9" x="200" y="0" width="200" height="40" forecolor="#000000" backcolor="#FFFFFF" fontSize="20.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[销售订单]]></text>
+		</element>
+		<element kind="staticText" uuid="1d6ee45d-105d-412e-bb5b-651007a85211" x="380" y="10" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[订单编号：]]></text>
+		</element>
+		<element kind="textField" uuid="76e83537-915c-4b9e-8f6b-71b0d003b6e7" x="440" y="10" width="120" height="20">
+			<expression><![CDATA[$P{orderInitNo}]]></expression>
+		</element>
+		<element kind="staticText" uuid="8211937f-d35a-4078-ae26-5ec16712be7c" x="380" y="30" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[创建日期：]]></text>
+		</element>
+		<element kind="textField" uuid="bccf2851-d061-40be-910c-30f816c0441d" x="440" y="30" width="120" height="20">
+			<expression><![CDATA[$P{createTime}]]></expression>
+		</element>
+		<element kind="line" uuid="9c73acee-8e39-491e-9f3b-f9e051452e93" x="0" y="60" width="555" height="1">
+			<pen lineWidth="1.0"/>
+		</element>
+		<element kind="staticText" uuid="e69255d2-c4ec-40f1-a13f-48d55876b729" x="0" y="70" width="60" height="20">
+			<text><![CDATA[客户信息：]]></text>
+		</element>
+		<element kind="textField" uuid="3192328c-d9ff-4511-ba0b-98066557369f" x="70" y="70" width="200" height="20">
+			<expression><![CDATA[$P{customerNombre} == null ? "" : $P{customerNombre}]]></expression>
+		</element>
+		<element kind="staticText" uuid="6b86460b-8c27-4045-a072-cdc4f9710bcf" x="380" y="70" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[仓库：]]></text>
+		</element>
+		<element kind="textField" uuid="60826e0e-b8cb-4ee2-824d-4b2f661a6eef" x="440" y="70" width="120" height="20">
+			<expression><![CDATA[$P{warehouseName} == null ? "" : $P{warehouseName}]]></expression>
+		</element>
+	</title>
+	<columnHeader height="30">
+		<element kind="staticText" uuid="65d5a837-bf85-4477-b76f-54a8bdd1663f" x="0" y="0" width="30" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[序号]]></text>
+		</element>
+		<element kind="staticText" uuid="cde6431f-695f-4a2f-82ad-abc1f4b98542" x="30" y="0" width="100" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[商品编码]]></text>
+		</element>
+		<element kind="staticText" uuid="a80f72bf-5532-4bbe-aa45-d8d30d31d475" x="130" y="0" width="120" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[商品名称]]></text>
+		</element>
+		<element kind="staticText" uuid="232013de-2d72-425d-b633-85e124def689" x="250" y="0" width="60" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[数量]]></text>
+		</element>
+		<element kind="staticText" uuid="68c2607c-b96d-4458-8a05-39f8e1ea995e" x="310" y="0" width="70" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[单价]]></text>
+		</element>
+		<element kind="staticText" uuid="9ecadc93-a118-4792-b81d-2e2860bb18f1" x="380" y="0" width="60" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[折扣%]]></text>
+		</element>
+		<element kind="staticText" uuid="fa8cdc5e-0a1e-42d9-b1dc-1349640be5c8" x="440" y="0" width="115" height="30" backcolor="#E8E8E8" bold="true" hTextAlign="Center">
+			<text><![CDATA[小计]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<element kind="textField" uuid="29439dec-2b3d-42e7-a501-e011de3175f4" x="30" y="0" width="100" height="25">
+				<expression><![CDATA[$F{skuNo}]]></expression>
+			</element>
+			<element kind="textField" uuid="ea4dbf3a-8808-4be5-be7e-0ce66ca19af1" x="130" y="0" width="120" height="25">
+				<expression><![CDATA[$F{skuName}]]></expression>
+			</element>
+			<element kind="textField" uuid="99f65234-349c-485e-b587-951699a894b7" x="250" y="0" width="60" height="25" hTextAlign="Center">
+				<expression><![CDATA[$F{detailQuantity}]]></expression>
+			</element>
+			<element kind="textField" uuid="7b585a70-f743-48d4-a368-240f6056d8f2" x="310" y="0" width="70" height="25" hTextAlign="Right">
+				<expression><![CDATA[$F{skuPrice}]]></expression>
+			</element>
+			<element kind="textField" uuid="bd9dcff8-0bc6-417a-a7d0-7fc701bf7948" x="380" y="0" width="60" height="25" hTextAlign="Right">
+				<expression><![CDATA[$F{detailDiscountRate}]]></expression>
+			</element>
+			<element kind="textField" uuid="b6423eb2-119a-45e6-acfa-0935bb9e449c" x="440" y="0" width="115" height="25" hTextAlign="Right">
+				<expression><![CDATA[$F{detailSalesAmount}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<summary height="100">
+		<element kind="line" uuid="9f253fa4-459f-4311-9eb0-35b0c6b48111" x="0" y="0" width="555" height="1">
+			<pen lineWidth="1.0"/>
+		</element>
+		<element kind="staticText" uuid="dfff56f7-c5e0-45d5-9258-7d9a4ef89cb4" x="380" y="5" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[总数量：]]></text>
+		</element>
+		<element kind="textField" uuid="c0be00ca-43ce-4f47-9610-59b0e5478b47" x="440" y="5" width="115" height="20" hTextAlign="Right">
+			<expression><![CDATA[$P{totalQuantity}]]></expression>
+		</element>
+		<element kind="staticText" uuid="c12d668b-70a9-41c4-aa15-4377e55f13c9" x="380" y="25" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[总金额：]]></text>
+		</element>
+		<element kind="textField" uuid="dd025073-ef3e-4610-9411-7ce45479b640" x="440" y="25" width="115" height="20" bold="true" hTextAlign="Right">
+			<expression><![CDATA["¥" + $P{totalAmount}]]></expression>
+		</element>
+		<element kind="staticText" uuid="54aa2acb-87dd-469d-8648-e10355e5caf1" x="380" y="45" width="60" height="20" hTextAlign="Right">
+			<text><![CDATA[折扣：]]></text>
+		</element>
+		<element kind="textField" uuid="bbc3cd40-fe91-4444-8eb6-aaa9f65d3524" x="440" y="45" width="115" height="20" hTextAlign="Right">
+			<expression><![CDATA["¥" + $P{totalDiscountAmount}]]></expression>
+		</element>
+		<element kind="staticText" uuid="b1b954bd-2f2b-4b91-b0c0-550159acb5f3" x="380" y="65" width="60" height="20" fontSize="14.0" bold="true" hTextAlign="Right">
+			<text><![CDATA[实收：]]></text>
+		</element>
+		<element kind="textField" uuid="e700f9f2-54d7-4649-9acf-d370c3a47bc1" x="440" y="65" width="115" height="20" fontSize="14.0" bold="true" hTextAlign="Right">
+			<expression><![CDATA["¥" + $P{totalSalesAmount}]]></expression>
+		</element>
+	</summary>
+</jasperReport>
