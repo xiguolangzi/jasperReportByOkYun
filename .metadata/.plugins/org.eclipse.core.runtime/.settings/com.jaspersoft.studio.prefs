@@ -8,8 +8,8 @@ defaultValues=<defaultReports></defaultReports>
 eclipse.preferences.version=1
 jssbranding_product_mainbundle=com.jaspersoft.studio.rcp
 jssbranding_product_name=Jaspersoft Studio Community Edition
-jssbranding_product_version=6.21.5.final
-net.sf.jasperreports.JRPROPERTIES=net.sf.jasperreports.web.resource.pattern.customvisualization.scripts\=com/jaspersoft/jasperreports/customvisualization/resources/require/.*\nnet.sf.jasperreports.compiler.temp.dir\=E\\\:\\\\software\\\\js-studiocomm_6.21.5_windows_x86_64\\\\jaspersoftstudio\nnet.sf.jasperreports.chrome.enabled\=true\nnet.sf.jasperreports.compiler.classpath\=E\\\:\\\\software\\\\js-studiocomm_6.21.5_windows_x86_64\\\\jaspersoftstudio\\\\\\\\plugins/org.eclipse.equinox.launcher_1.6.800.v20240513-1750.jar\nnet.sf.jasperreports.chrome.page.isolate\=true\nnet.sf.jasperreports.chrome.argument.remote-allow-origins\=*\n
+jssbranding_product_version=7.0.6.final
+net.sf.jasperreports.JRPROPERTIES=net.sf.jasperreports.web.resource.pattern.customvisualization.scripts\=com/jaspersoft/jasperreports/customvisualization/resources/require/.*\nnet.sf.jasperreports.compiler.temp.dir\=C\\\:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\\nnet.sf.jasperreports.chrome.enabled\=true\nnet.sf.jasperreports.compiler.classpath\=E\\\:\\\\software\\\\js-studiocomm_7.0.6_windows_x86_64\\\\jaspersoftstudio\\\\\\\\plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar\nnet.sf.jasperreports.chrome.page.isolate\=true\nnet.sf.jasperreports.chrome.argument.remote-allow-origins\=*\n
 net.sf.jasperreports.chrome.argument.remote-allow-origins=*
 net.sf.jasperreports.chrome.enabled=true
 net.sf.jasperreports.chrome.page.isolate=true

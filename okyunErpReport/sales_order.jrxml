@@ -115,8 +115,8 @@
 	</title>
 	<pageHeader height="38">
 		<printWhenExpression><![CDATA[$V{PAGE_NUMBER} > 1]]></printWhenExpression>
-		<element kind="staticText" uuid="bdfe3bc5-7884-4b81-80da-884032e0cc46" x="305" y="0" width="100" height="20" hTextAlign="Right">
-			<text><![CDATA[Número de Albarán：]]></text>
+		<element kind="staticText" uuid="bdfe3bc5-7884-4b81-80da-884032e0cc46" x="305" y="0" width="100" height="20" bold="true" hTextAlign="Right">
+			<text><![CDATA[Número de Albarán :]]></text>
 		</element>
 		<element kind="textField" uuid="be7d2f84-c570-4137-8717-19f6b4f11bd3" x="-1" y="0" width="281" height="30" fontName="楷体" fontSize="22.0" bold="false">
 			<expression><![CDATA[$P{tenantName}]]></expression>

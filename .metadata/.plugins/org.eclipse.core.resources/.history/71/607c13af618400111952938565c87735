@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.6.final -->
+<jasperReport name="invoice" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
+    
+    <!-- 属性配置 -->
+    <property name="net.sf.jasperreports.default.font.name" value="宋体"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="STSong-Light"/>
+    <property name="net.sf.jasperreports.default.pdf.encoding" value="UniGB-UCS2-H"/>
+    
+    <!-- 导入 -->
+    <import>net.sf.jasperreports.engine.*</import>
+    <import>java.util.*</import>
+    <import>net.sf.jasperreports.engine.data.*</import>
+    
+    <!-- ========== 参数区域 ========== -->
+    <parameter name="destinatarioNombre" class="java.lang.String"/>
+    <parameter name="destinatarioNif" class="java.lang.String"/>
+    <parameter name="destinatarioPhone" class="java.lang.String"/>
+    <parameter name="destinatarioAddress" class="java.lang.String"/>
+    <parameter name="emisorNombre" class="java.lang.String"/>
+    <parameter name="emisorNif" class="java.lang.String"/>
+    <parameter name="emisorPhone" class="java.lang.String"/>
+    <parameter name="emisorAddress" class="java.lang.String"/>
+    <parameter name="invoiceQr" class="java.lang.String"/>
+    <parameter name="tenantName" class="java.lang.String"/>
+    <parameter name="printFooter" class="java.lang.String"/>
+    <parameter name="invoiceDescripcion" class="java.lang.String"/>
+    <parameter name="invoiceImporteTotal" class="java.math.BigDecimal"/>
+    <parameter name="invoiceSerie" class="java.lang.String"/>
+    <parameter name="invoiceNumero" class="java.lang.String"/>
+    <parameter name="invoiceFecha" class="java.lang.String"/>
+    <parameter name="invoiceDueDate" class="java.lang.String"/>
+    <parameter name="invoiceImporteImpuestos" class="java.math.BigDecimal"/>
+    <parameter name="InvoiceBase" class="java.math.BigDecimal"/>
+    <parameter name="orderInitNo" class="java.lang.String"/>
+    
+    <!-- 新增：税率明细数据源参数 -->
+    <parameter name="taxDetailDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    
+    <!-- ========== Fields：主报表明细数据 ========== -->
+    <field name="rowIndex" class="java.lang.Integer"/>
+    <field name="skuCode" class="java.lang.String"/>
+    <field name="skuNo" class="java.lang.String"/>
+    <field name="skuName" class="java.lang.String"/>
+    <field name="detailPrice" class="java.math.BigDecimal"/>
+    <field name="detailDiscountInfo" class="java.lang.String"/>
+    <field name="detailQuantityInfo" class="java.lang.String"/>
+    <field name="detailNetAmount" class="java.math.BigDecimal"/>
+    <field name="detailTaxRate" class="java.math.BigDecimal"/>
+    
+    <!-- ========== Dataset：税率明细数据集 ========== -->
+    <dataset name="TaxDataset">
+        <field name="detailBase" class="java.math.BigDecimal"/>
+        <field name="detailTipoIva" class="java.math.BigDecimal"/>
+        <field name="detailCuotaIva" class="java.math.BigDecimal"/>
+        <field name="detailTipoRe" class="java.math.BigDecimal"/>
+        <field name="detailCuotaRe" class="java.math.BigDecimal"/>
+        <field name="detailSumaTotal" class="java.math.BigDecimal"/>
+    </dataset>
+    
+    <!-- ========== Title 带区（保持不变） ========== -->
+    <title height="218">
+        <!-- ... 你的原有 title 内容 ... -->
+    </title>
+    
+    <!-- ========== PageHeader 带区（保持不变） ========== -->
+    <pageHeader height="38">
+        <!-- ... 你的原有 pageHeader 内容 ... -->
+    </pageHeader>
+    
+    <!-- ========== ColumnHeader 带区（保持不变） ========== -->
+    <columnHeader height="33">
+        <!-- ... 你的原有 columnHeader 内容 ... -->
+    </columnHeader>
+    
+    <!-- ========== Detail 带区（保持不变） ========== -->
+    <detail>
+        <band height="31">
+            <!-- ... 你的原有 detail 内容 ... -->
+        </band>
+    </detail>
+    
+    <!-- ========== PageFooter 带区（保持不变） ========== -->
+    <pageFooter height="30">
+        <!-- ... 你的原有 pageFooter 内容 ... -->
+    </pageFooter>
+    
+    <!-- ========== Summary 带区（重点修改） ========== -->
+    <summary height="340">
+        
+        <!-- ====== 1. 税率明细标题 ====== -->
+        <element kind="staticText" uuid="tax-title" x="0" y="0" width="555" height="25" backcolor="#34495E" forecolor="#FFFFFF" fontSize="12" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Desglose de IVA / RECARGO]]></text>
+        </element>
+        
+        <!-- ====== 2. 税率明细 Table（绑定 TaxDataset） ====== -->
+        <element kind="component" uuid="tax-table" x="0" y="25" width="555" height="80">
+            <component kind="Table" datasetName="TaxDataset">
+                
+                <!-- 列1：税率 -->
+                <column width="80">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Tipo IVA]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Center" vTextAlign="Middle">
+                            <expression><![CDATA[$F{detailTipoIva} + "%"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- 列2：Base -->
+                <column width="95">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Base]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Right" vTextAlign="Middle">
+                            <expression><![CDATA[$F{detailBase} + " €"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- 列3：Cuota IVA -->
+                <column width="95">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Cuota IVA]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Right" vTextAlign="Middle">
+                            <expression><![CDATA[$F{detailCuotaIva} + " €"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- 列4：Tipo RE -->
+                <column width="80">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Tipo RE]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Center" vTextAlign="Middle">
+                            <expression><![CDATA[$F{detailTipoRe} + "%"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- 列5：Cuota RE -->
+                <column width="95">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Cuota RE]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Right" vTextAlign="Middle">
+                            <expression><![CDATA[$F{detailCuotaRe} + " €"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- 列6：Suma Total -->
+                <column width="110">
+                    <tableHeader height="22">
+                        <staticText hTextAlign="Center" vTextAlign="Middle" bold="true" backcolor="#E8E8E8">
+                            <text><![CDATA[Suma Total]]></text>
+                        </staticText>
+                    </tableHeader>
+                    <tableDetail height="20">
+                        <textField pattern="#,##0.##" hTextAlign="Right" vTextAlign="Middle" bold="true">
+                            <expression><![CDATA[$F{detailSumaTotal} + " €"]]></expression>
+                        </textField>
+                    </tableDetail>
+                </column>
+                
+                <!-- Table 数据源绑定 -->
+                <dataSourceExpression><![CDATA[$P{taxDetailDataSource}]]></dataSourceExpression>
+            </component>
+        </element>
+        
+        <!-- ====== 3. 分割线 ====== -->
+        <element kind="line" uuid="9f253fa4-459f-4311-9eb0-35b0c6b48111" x="0" y="110" width="555" height="1">
+            <pen lineWidth="1.0"/>
+        </element>
+        
+        <!-- ====== 4. 汇总数据 ====== -->
+        <!-- Base -->
+        <element kind="staticText" uuid="dfff56f7-c5e0-45d5-9258-7d9a4ef89cb4" x="310" y="120" width="131" height="20" hTextAlign="Right">
+            <text><![CDATA[Base：]]></text>
+        </element>
+        <element kind="textField" uuid="c0be00ca-43ce-4f47-9610-59b0e5478b47" x="440" y="120" width="115" height="20" hTextAlign="Right">
+            <expression><![CDATA[$P{InvoiceBase} +" €"]]></expression>
+        </element>
+        
+        <!-- Importe Impuestos -->
+        <element kind="staticText" uuid="c12d668b-70a9-41c4-aa15-4377e55f13c9" x="310" y="140" width="131" height="20" hTextAlign="Right">
+            <text><![CDATA[Importe Impuestos：]]></text>
+        </element>
+        <element kind="textField" uuid="dd025073-ef3e-4610-9411-7ce45479b640" x="440" y="140" width="115" height="20" bold="true" hTextAlign="Right">
+            <expression><![CDATA[$P{invoiceImporteImpuestos}+" €"]]></expression>
+        </element>
+        
+        <!-- Importe Total -->
+        <element kind="staticText" uuid="b1b954bd-2f2b-4b91-b0c0-550159acb5f3" x="310" y="160" width="131" height="27" fontSize="16.0" bold="true" hTextAlign="Right">
+            <text><![CDATA[Importe Total：]]></text>
+        </element>
+        <element kind="textField" uuid="e700f9f2-54d7-4649-9acf-d370c3a47bc1" x="441" y="160" width="115" height="27" fontSize="16.0" bold="true" hTextAlign="Right">
+            <expression><![CDATA[$P{invoiceImporteTotal}+" €"]]></expression>
+        </element>
+        
+        <!-- 分割线 -->
+        <element kind="line" uuid="e681dfe8-8b0a-43fd-ba49-1d1600a7e3bd" x="300" y="110" width="270" height="1">
+            <pen lineWidth="2.0" lineStyle="Solid" lineColor="#3038A6"/>
+        </element>
+        
+    </summary>
+</jasperReport>
