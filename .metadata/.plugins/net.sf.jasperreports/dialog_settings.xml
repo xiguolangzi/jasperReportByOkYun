@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="com.jaspersoft.studio.property.descriptor.expression.dialog.JRExpressionEditor">
-		<item key="dialogX" value="4745"/>
-		<item key="dialogY" value="245"/>
+		<item key="dialogX" value="905"/>
+		<item key="dialogY" value="247"/>
 		<item key="dialogWidth" value="750"/>
 		<item key="dialogHeight" value="680"/>
 		<item key="DIALOG_X_ORIGIN" value="912"/>
@@ -16,10 +16,10 @@
 		<item key="dialogY" value="367"/>
 		<item key="dialogWidth" value="600"/>
 		<item key="dialogHeight" value="500"/>
-		<item key="DIALOG_X_ORIGIN" value="987"/>
-		<item key="DIALOG_Y_ORIGIN" value="374"/>
+		<item key="DIALOG_X_ORIGIN" value="988"/>
+		<item key="DIALOG_Y_ORIGIN" value="375"/>
 		<item key="DIALOG_WIDTH" value="600"/>
 		<item key="DIALOG_HEIGHT" value="500"/>
-		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
 	</section>
 </section>
