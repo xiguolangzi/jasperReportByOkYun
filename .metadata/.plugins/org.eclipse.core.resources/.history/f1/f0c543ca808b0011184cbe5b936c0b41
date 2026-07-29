@@ -1,0 +1,24 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="tickit" language="java" columnCount="1" pageWidth="226" pageHeight="2831" orientation="Landscape" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="186eccac-5f6a-43b8-b010-e4d37de30a41">
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<query language="sql"><![CDATA[]]></query>
+	<background splitType="Stretch"/>
+	<title height="138" splitType="Stretch">
+		<element kind="staticText" uuid="c8507838-249f-4bbb-9c00-e9ed182cf605" x="63" y="54" width="100" height="30">
+			<text><![CDATA[Factura simplificada]]></text>
+		</element>
+	</title>
+	<columnHeader height="28" splitType="Stretch"/>
+	<detail>
+		<band height="48" splitType="Stretch"/>
+	</detail>
+	<summary height="162" splitType="Stretch"/>
+</jasperReport>
