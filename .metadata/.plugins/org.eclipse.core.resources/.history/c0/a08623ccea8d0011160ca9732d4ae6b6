@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports 
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="taxTable" 
+              pageWidth="204" 
+              pageHeight="50" 
+              columnCount="1"
+              leftMargin="0"
+              rightMargin="0"
+              topMargin="0"
+              bottomMargin="0"
+              whenNoDataType="AllSectionsNoDetail">
+    
+    <property name="net.sf.jasperreports.default.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.encoding" value="Identity-H"/>
+    <property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+    
+    <import value="java.math.BigDecimal"/>
+    
+    <field name="detailBase" class="java.math.BigDecimal"/>
+    <field name="detailTipoIva" class="java.math.BigDecimal"/>
+    <field name="detailCuotaIva" class="java.math.BigDecimal"/>
+    <field name="detailTipoRe" class="java.math.BigDecimal"/>
+    <field name="detailCuotaRe" class="java.math.BigDecimal"/>
+    <field name="detailSumaTotal" class="java.math.BigDecimal"/>
+    
+    <columnHeader>
+        <band height="22">
+            <staticText>
+                <reportElement x="0" y="0" width="40" height="22" backcolor="#C1C9DB"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Base]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="40" y="0" width="40" height="22" backcolor="#C1C9DB"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Tipo IVA]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="80" y="0" width="50" height="22" backcolor="#C1C9DB"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Cuota IVA]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="130" y="0" width="70" height="22" backcolor="#C1C9DB"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <text><![CDATA[Suma Total]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="40" height="20"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailBase} + " €"]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="40" y="0" width="40" height="20"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailTipoIva} + "%"]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="80" y="0" width="50" height="20"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailCuotaIva} + " €"]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="130" y="0" width="70" height="20"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailSumaTotal} + " €"]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;okyunErpReport/ticketInvoice2.jrxml&apos;" deleteContents="false" description="Delete resource &apos;okyunErpReport/ticketInvoice2.jrxml&apos;" element1="/okyunErpReport/ticketInvoice2.jrxml" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1785765041734"/>
+</session>

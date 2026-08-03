@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="com.jaspersoft.studio.property.descriptor.expression.dialog.JRExpressionEditor">
-		<item key="dialogX" value="4745"/>
-		<item key="dialogY" value="245"/>
+		<item key="dialogX" value="2825"/>
+		<item key="dialogY" value="-822"/>
 		<item key="dialogWidth" value="750"/>
 		<item key="dialogHeight" value="680"/>
 		<item key="DIALOG_X_ORIGIN" value="912"/>
@@ -21,5 +21,38 @@
 		<item key="DIALOG_WIDTH" value="600"/>
 		<item key="DIALOG_HEIGHT" value="500"/>
 		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.model.image.command.dialog.ImageCreationDialog">
+		<item key="dialogX" value="4841"/>
+		<item key="dialogY" value="306"/>
+		<item key="dialogWidth" value="558"/>
+		<item key="dialogHeight" value="588"/>
+		<item key="DIALOG_X_ORIGIN" value="1008"/>
+		<item key="DIALOG_Y_ORIGIN" value="315"/>
+		<item key="DIALOG_WIDTH" value="558"/>
+		<item key="DIALOG_HEIGHT" value="588"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog">
+		<item key="dialogX" value="4699"/>
+		<item key="dialogY" value="190"/>
+		<item key="dialogWidth" value="842"/>
+		<item key="dialogHeight" value="762"/>
+		<item key="DIALOG_X_ORIGIN" value="866"/>
+		<item key="DIALOG_Y_ORIGIN" value="199"/>
+		<item key="DIALOG_WIDTH" value="842"/>
+		<item key="DIALOG_HEIGHT" value="762"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+	</section>
+	<section name="com.jaspersoft.studio.jface.dialogs.SubreportSelectionDialog">
+		<item key="dialogX" value="662"/>
+		<item key="dialogY" value="246"/>
+		<item key="dialogWidth" value="597"/>
+		<item key="dialogHeight" value="412"/>
+		<item key="DIALOG_X_ORIGIN" value="-36"/>
+		<item key="DIALOG_Y_ORIGIN" value="246"/>
+		<item key="DIALOG_WIDTH" value="597"/>
+		<item key="DIALOG_HEIGHT" value="412"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
 	</section>
 </section>

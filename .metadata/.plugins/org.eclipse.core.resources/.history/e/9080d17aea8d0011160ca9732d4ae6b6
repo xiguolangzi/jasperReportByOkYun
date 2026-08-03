@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports 
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="invoice" 
+              language="java" 
+              columnCount="1" 
+              pageWidth="204" 
+              pageHeight="2831" 
+              columnWidth="204" 
+              leftMargin="0" 
+              rightMargin="0" 
+              topMargin="0" 
+              bottomMargin="0" 
+              whenResourceMissingType="Empty">
+    
+    <property name="net.sf.jasperreports.default.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.encoding" value="Identity-H"/>
+    <property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+    
+    <import value="net.sf.jasperreports.engine.*"/>
+    <import value="java.util.*"/>
+    <import value="net.sf.jasperreports.engine.data.*"/>
+    
+    <parameter name="destinatarioNombre" class="java.lang.String"/>
+    <parameter name="destinatarioNif" class="java.lang.String"/>
+    <parameter name="destinatarioPhone" class="java.lang.String"/>
+    <parameter name="destinatarioAddress" class="java.lang.String"/>
+    <parameter name="emisorNombre" class="java.lang.String"/>
+    <parameter name="emisorNif" class="java.lang.String"/>
+    <parameter name="emisorPhone" class="java.lang.String"/>
+    <parameter name="emisorAddress" class="java.lang.String"/>
+    <parameter name="invoiceQr" class="java.lang.String"/>
+    <parameter name="tenantName" class="java.lang.String"/>
+    <parameter name="printFooter" class="java.lang.String"/>
+    <parameter name="invoiceDescripcion" class="java.lang.String"/>
+    <parameter name="invoiceImporteTotal" class="java.math.BigDecimal"/>
+    <parameter name="invoiceSerie" class="java.lang.String"/>
+    <parameter name="invoiceNumero" class="java.lang.Long"/>
+    <parameter name="invoiceFecha" class="java.lang.String"/>
+    <parameter name="invoiceDueDate" class="java.lang.String"/>
+    <parameter name="invoiceImporteImpuestos" class="java.math.BigDecimal"/>
+    <parameter name="invoiceBase" class="java.math.BigDecimal"/>
+    <parameter name="orderInitNo" class="java.lang.String"/>
+    <parameter name="invoiceDetailList" class="java.util.List"/>
+    <parameter name="invoiceTitle" class="java.lang.String"/>
+    <parameter name="cajaName" class="java.lang.String"/>
+    <parameter name="crateTime" class="java.lang.String"/>
+    <parameter name="logoImage" class="java.io.InputStream"/>
+    <parameter name="totalQuantity" class="java.lang.String"/>
+    <parameter name="payDetailList" class="java.util.List"/>
+    
+    <field name="rowIndex" class="java.lang.Integer"/>
+    <field name="skuCode" class="java.lang.String"/>
+    <field name="skuNo" class="java.lang.String"/>
+    <field name="skuName" class="java.lang.String"/>
+    <field name="detailPrice" class="java.math.BigDecimal"/>
+    <field name="detailDiscountInfo" class="java.lang.String"/>
+    <field name="detailQuantityInfo" class="java.lang.String"/>
+    <field name="detailNetAmount" class="java.math.BigDecimal"/>
+    <field name="detailTaxRate" class="java.math.BigDecimal"/>
+    
+    <title>
+        <band height="254">
+            <image>
+                <reportElement x="9" y="0" width="191" height="50">
+                    <printWhenExpression><![CDATA[$P{logoImage} != null]]></printWhenExpression>
+                </reportElement>
+                <imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+            </image>
+            
+            <textField>
+                <reportElement x="9" y="50" width="191" height="30">
+                    <printWhenExpression><![CDATA[$P{logoImage} == null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="19" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{tenantName}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="4" y="130" width="195" height="30"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="13" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{invoiceTitle} != null ? $P{invoiceTitle} : "FACTURA"]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="7" y="85" width="35" height="15"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <text><![CDATA[Nif/Nie :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="42" y="85" width="70" height="15"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{emisorNif}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="116" y="85" width="17" height="15"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <text><![CDATA[Tel :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="134" y="85" width="66" height="15"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{emisorPhone}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="7" y="100" width="193" height="30"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{emisorAddress}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="3" y="160" width="46" height="14"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center"/>
+                <text><![CDATA[Nº Factura :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="49" y="160" width="80" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceNumero} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$P{invoiceSerie} + "_" + $P{invoiceNumero}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="128" y="160" width="27" height="14"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Right"/>
+                <text><![CDATA[Fecha:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="157" y="160" width="42" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceFecha} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{invoiceFecha}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="3" y="174" width="46" height="14"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[caja :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="48" y="174" width="80" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceNumero} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{cajaName}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="131" y="174" width="67" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceNumero} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{crateTime}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="2" y="190" width="200" height="15">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" verticalAlignment="Middle"/>
+                <text><![CDATA[Información del Destinatario :]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="4" y="205" width="35" height="15">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <text><![CDATA[Nif/Nie :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="38" y="205" width="70" height="15">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{destinatarioNif}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="112" y="205" width="35" height="15">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <text><![CDATA[Tel :]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="147" y="205" width="56" height="15">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{destinatarioPhone}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="4" y="220" width="201" height="19">
+                    <printWhenExpression><![CDATA[$P{destinatarioNif} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{destinatarioAddress}]]></textFieldExpression>
+            </textField>
+            
+            <staticText>
+                <reportElement x="4" y="240" width="51" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceDescripcion} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" verticalAlignment="Middle"/>
+                <text><![CDATA[Descripción:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="54" y="240" width="150" height="14">
+                    <printWhenExpression><![CDATA[$P{invoiceDescripcion} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{invoiceDescripcion}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    
+    <columnHeader>
+        <band height="32">
+            <line>
+                <reportElement x="0" y="0" width="203" height="2"/>
+            </line>
+            
+            <staticText>
+                <reportElement x="0" y="0" width="28" height="30" backcolor="#34495E"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Cant.]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="28" y="0" width="90" height="30" backcolor="#34495E"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[DESCRIPCIÓN]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="119" y="0" width="28" height="30" backcolor="#34495E"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <text><![CDATA[P. Unit.]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="147" y="1" width="28" height="30" backcolor="#34495E"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Dto.%]]></text>
+            </staticText>
+            
+            <staticText>
+                <reportElement x="175" y="1" width="28" height="30" backcolor="#34495E"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <text><![CDATA[Imp.]]></text>
+            </staticText>
+            
+            <line>
+                <reportElement x="0" y="31" width="203" height="1"/>
+            </line>
+        </band>
+    </columnHeader>
+    
+    <detail>
+        <band height="26">
+            <textField>
+                <reportElement x="0" y="0" width="28" height="21"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailQuantityInfo}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="28" y="-2" width="90" height="23"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{skuName}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="119" y="0" width="28" height="21"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" pattern="#,##0.##" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailPrice} + " €"]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="147" y="-2" width="28" height="23"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailDiscountInfo}]]></textFieldExpression>
+            </textField>
+            
+            <textField>
+                <reportElement x="175" y="-1" width="28" height="22"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true" textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detailNetAmount} + " €"]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    
+    <summary>
+        <band height="300">
+            <textField>
+                <reportElement x="0" y="0" width="32" height="14"/>
+                <textElement fontName="阿里巴巴普惠体" fontSize="8" bold="true"/>
+                <textFieldExpression><![CDATA[$P{totalQuantity}]]></textFieldExpression>
+            </textField>
+            
+            <line>
+                <reportElement x="0" y="0" width="203" height="1"/>
+            </line>
+            
+            <staticText>
+                <reportElement x="84" y="1" width="35" height="18"/>
+                <textElement fontName="阿里巴巴普惠体" bold="true"/>
+                <text><![CDATA[Total:]]></text>
+            </staticText>
+            
+            <textField>
+                <reportElement x="119" y="1" width="76" height="18"/>
+                <textElement fontName="阿里巴巴普惠体"/>
+                <textFieldExpression><![CDATA[$P{invoiceImporteTotal} + " €"]]></textFieldExpression>
+            </textField>
+            
+            <subreport>
+                <reportElement x="2" y="19" width="201" height="15"/>
+                <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{payDetailList})]]></dataSourceExpression>
+                <subreportExpression><![CDATA["payTable.jasper"]]></subreportExpression>
+            </subreport>
+            
+            <subreport>
+                <reportElement x="1" y="40" width="201" height="30"/>
+                <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{invoiceDetailList})]]></dataSourceExpression>
+                <subreportExpression><![CDATA["taxTable.jasper"]]></subreportExpression>
+            </subreport>
+            
+            <componentElement>
+                <reportElement x="9" y="80" width="178" height="122">
+                    <printWhenExpression><![CDATA[$P{invoiceQr} != null]]></printWhenExpression>
+                </reportElement>
+                <component kind="barcode4j:QRCode">
+                    <codeExpression><![CDATA[$P{invoiceQr}]]></codeExpression>
+                </component>
+            </componentElement>
+            
+            <staticText>
+                <reportElement x="32" y="210" width="148" height="22">
+                    <printWhenExpression><![CDATA[$P{invoiceQr} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Factura verificable en la AEAT]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>
