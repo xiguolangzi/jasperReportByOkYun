@@ -1,0 +1,80 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="salesVoucher" language="java" columnCount="1" pageWidth="204" pageHeight="2831" orientation="Landscape" columnWidth="204" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="79caf5a3-8873-4a62-94ef-f46f90c9e1db">
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<parameter name="invoiceNif" class="java.lang.String"/>
+	<parameter name="invoiceNombre" class="java.lang.String"/>
+	<parameter name="invoiceAddress" class="java.lang.String"/>
+	<parameter name="voucherAmount" class="java.math.BigDecimal"/>
+	<parameter name="createTime" class="java.lang.String"/>
+	<parameter name="voucherStatusName" class="java.lang.String"/>
+	<parameter name="voucherNo" class="java.lang.String"/>
+	<parameter name="orderInitNo" class="java.lang.String"/>
+	<parameter name="valeTitle" class="java.lang.String"/>
+	<parameter name="footerTitle" class="java.lang.String"/>
+	<parameter name="footerContent" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<background splitType="Stretch"/>
+	<title height="288" splitType="Stretch">
+		<element kind="staticText" uuid="17319a72-007c-4389-b37b-093cdffbe303" x="0" y="10" width="198" height="30" fontName="阿里巴巴普惠体" fontSize="16.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[VALE DE DEVOLUCIÓN]]></text>
+		</element>
+		<element kind="line" uuid="009ca851-82a8-4fd5-b5ba-372073cf26d8" x="0" y="40" width="198" height="1"/>
+		<element kind="textField" uuid="84e21c89-c197-4540-a29e-0a41d87a01e8" x="0" y="40" width="198" height="22" fontName="阿里巴巴普惠体" bold="true">
+			<expression><![CDATA[$P{invoiceNombre}]]></expression>
+		</element>
+		<element kind="textField" uuid="ff5a6eea-1f78-469c-9d42-da5757b15633" x="0" y="62" width="198" height="14" fontName="阿里巴巴普惠体" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{invoiceNif}]]></expression>
+		</element>
+		<element kind="textField" uuid="15345ed1-4e45-4517-886b-cba82bcb72b8" x="0" y="76" width="198" height="28" fontName="阿里巴巴普惠体" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{invoiceAddress}]]></expression>
+		</element>
+		<element kind="staticText" uuid="96965cf5-9e61-4a5c-ab15-57b6fc38d342" x="0" y="104" width="100" height="26" fontName="阿里巴巴普惠体" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[*** IMPORTE:]]></text>
+		</element>
+		<element kind="textField" uuid="3990df0a-8433-4c4c-be43-23d9b22da660" x="100" y="104" width="100" height="26" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{voucherAmount}]]></expression>
+		</element>
+		<element kind="staticText" uuid="3f62d67a-f4f2-411b-b820-46782701b71a" x="10" y="132" width="54" height="19" bold="true" hTextAlign="Right">
+			<text><![CDATA[FECHA:]]></text>
+		</element>
+		<element kind="staticText" uuid="2ba545d1-888f-415e-b92b-41c896f7da5c" x="10" y="152" width="54" height="22" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[ESTADO:]]></text>
+		</element>
+		<element kind="textField" uuid="bae49fb1-106f-4a21-abf0-902f2497cece" x="64" y="130" width="126" height="22" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{createTime}]]></expression>
+		</element>
+		<element kind="textField" uuid="77951a0e-a704-41bc-818a-7a8c9196b508" x="64" y="152" width="126" height="22" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{voucherStatusName}]]></expression>
+		</element>
+		<element kind="staticText" uuid="8650bc8d-1a69-40fb-a060-770dcfc5c12a" x="0" y="179" width="70" height="28" fontSize="14.0" bold="true">
+			<text><![CDATA[Nº Vale:]]></text>
+		</element>
+		<element kind="staticText" uuid="5d760547-32ae-4596-b507-a9bb98953c59" x="0" y="208" width="70" height="28" fontSize="12.0" bold="true">
+			<text><![CDATA[Nº Pedido:]]></text>
+		</element>
+		<element kind="staticText" uuid="9db48d6e-35e9-4633-b19b-4931bb7da267" x="0" y="237" width="198" height="17" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[¡Gracias por su compra!]]></text>
+		</element>
+		<element kind="staticText" uuid="29e5843a-779d-4ba2-895e-8a1ea8e944d9" x="0" y="254" width="198" height="34" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[CONDICIONES:No reembolsable en efectivo,No acumulable a otras promociones]]></text>
+		</element>
+		<element kind="component" uuid="7a00d010-5cf1-467f-bfdc-57705535e4df" x="70" y="179" width="129" height="29" printRepeatedValues="false">
+			<component kind="barcode4j:Code128">
+				<codeExpression><![CDATA[$P{voucherNo}]]></codeExpression>
+			</component>
+		</element>
+		<element kind="component" uuid="392c76cc-92a4-45cb-a6d8-6430f785af44" x="70" y="208" width="129" height="29" printRepeatedValues="false">
+			<component kind="barcode4j:Code128">
+				<codeExpression><![CDATA[$P{orderInitNo}]]></codeExpression>
+			</component>
+		</element>
+	</title>
+</jasperReport>
