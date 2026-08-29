@@ -156,14 +156,15 @@
 			<expression><![CDATA[$P{invoiceFecha}]]></expression>
 		</element>
 		<element kind="staticText" uuid="065079be-6dec-4566-b813-a843dc1e698c" x="0" y="180" width="70" height="30" fontName="阿里巴巴普惠体" bold="true" vTextAlign="Middle">
-			<printWhenExpression><![CDATA[$P{invoiceDescripcion} != null]]></printWhenExpression>
 			<text><![CDATA[Descripción:]]></text>
-		</element>
-		<element kind="textField" uuid="38826a8e-8463-4f24-b595-43ecf7952e1b" positionType="Float" stretchType="ContainerHeight" x="70" y="180" width="484" height="30" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" vTextAlign="Middle">
-			<expression><![CDATA[$P{invoiceDescripcion}]]></expression>
 		</element>
 		<element kind="textField" uuid="1aca5322-44d6-4977-9851-c2d3917cb3e3" x="1" y="0" width="328" height="50" fontName="阿里巴巴普惠体" fontSize="25.0" bold="true" vTextAlign="Middle">
 			<expression><![CDATA[$P{invoiceTitle} != null ? $P{invoiceTitle} : "FACTURA"]]></expression>
+		</element>
+		<element kind="textField" uuid="8faaaeb3-3204-4d73-bdbd-5a98c8486c6a" x="70" y="180" width="484" height="30" fontName="阿里巴巴普惠体" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{invoiceDescripcion}]]></expression>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
 	</title>
 	<pageHeader height="30">
