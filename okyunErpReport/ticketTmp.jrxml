@@ -112,6 +112,8 @@
 	<parameter name="totalQuantity" class="java.lang.String"/>
 	<parameter name="payDetailList" class="java.util.List"/>
 	<parameter name="confirmDate" class="java.lang.String"/>
+	<parameter name="totalSalesAmount" class="java.lang.String"/>
+	<parameter name="totalNetAmount" class="java.lang.String"/>
 	<field name="rowIndex" class="java.lang.Integer"/>
 	<field name="skuCode" class="java.lang.String"/>
 	<field name="skuNo" class="java.lang.String"/>
@@ -363,7 +365,7 @@
 			<text><![CDATA[Total:]]></text>
 		</element>
 		<element kind="textField" uuid="00eab1f9-7562-4828-a83b-73c251cefe45" x="141" y="1" width="59" height="18">
-			<expression><![CDATA[$P{invoiceImporteTotal}]]></expression>
+			<expression><![CDATA[$P{totalNetAmount}]]></expression>
 		</element>
 		<element kind="component" uuid="fb94a8c5-eb0d-4232-b839-f3a7661417a4" positionType="Float" x="2" y="19" width="201" height="20">
 			<component kind="table">
