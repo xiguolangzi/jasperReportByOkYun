@@ -126,6 +126,7 @@
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			</element>
 			<element kind="textField" uuid="cc3cdb69-9200-4ec2-bca2-b0939426291a" x="317" y="77" width="150" height="20" fontName="阿里巴巴普惠体" hTextAlign="Left" vTextAlign="Middle">
+				<printWhenExpression><![CDATA[$P{destinatarioPhone} != null]]></printWhenExpression>
 				<expression><![CDATA[$P{destinatarioPhone}]]></expression>
 				<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -163,6 +164,7 @@
 			<expression><![CDATA[$P{invoiceTitle} != null ? $P{invoiceTitle} : "FACTURA"]]></expression>
 		</element>
 		<element kind="textField" uuid="8faaaeb3-3204-4d73-bdbd-5a98c8486c6a" x="70" y="180" width="484" height="30" fontName="阿里巴巴普惠体" hTextAlign="Left" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$P{invoiceDescripcion} != null]]></printWhenExpression>
 			<expression><![CDATA[$P{invoiceDescripcion}]]></expression>
 			<property name="com.jaspersoft.studio.unit.x" value="px"/>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>

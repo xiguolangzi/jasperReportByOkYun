@@ -1,17 +1,8 @@
 <!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
-<jasperReport name="invoice" language="java" columnCount="1" pageWidth="204" pageHeight="2831" orientation="Landscape" columnWidth="204" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
+<jasperReport name="invoice" language="java" columnCount="1" pageWidth="204" pageHeight="2831" columnWidth="204" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
 	<property name="net.sf.jasperreports.default.font.name" value="阿里巴巴普惠体"/>
 	<property name="net.sf.jasperreports.default.pdf.font.name" value="阿里巴巴普惠体"/>
 	<property name="net.sf.jasperreports.default.pdf.encoding" value="Identity-H"/>
-	<property name="com.jaspersoft.studio.unit." value="mm"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
 	<import>net.sf.jasperreports.engine.*</import>
 	<import>java.util.*</import>
 	<import>net.sf.jasperreports.engine.data.*</import>
@@ -206,7 +197,7 @@
 			<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 			<property name="com.jaspersoft.studio.unit.width" value="mm"/>
 		</element>
-		<element kind="staticText" uuid="fa8cdc5e-0a1e-42d9-b1dc-1349640be5c8" x="164" y="1" width="39" height="18" backcolor="#34495E" fontName="阿里巴巴普惠体" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="staticText" uuid="fa8cdc5e-0a1e-42d9-b1dc-1349640be5c8" x="164" y="1" width="36" height="18" backcolor="#34495E" fontName="阿里巴巴普惠体" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
 			<text><![CDATA[Imp. ]]></text>
 			<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 			<property name="com.jaspersoft.studio.unit.width" value="mm"/>

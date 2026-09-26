@@ -37,6 +37,7 @@
 	<field name="detailNetAmount" class="java.lang.String"/>
 	<field name="detailTaxRate" class="java.lang.String"/>
 	<field name="code" class="java.lang.String"/>
+	<field name="detailSalesAmount" class="java.lang.String"/>
 	<title height="181">
 		<element kind="staticText" uuid="6b39e405-9df7-48c3-a38a-044fda8818f9" x="-1" y="0" width="196" height="50" forecolor="#000000" backcolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="35.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Albarán]]></text>
@@ -73,6 +74,7 @@
 				<text><![CDATA[Tel :]]></text>
 			</element>
 			<element kind="textField" uuid="cc3cdb69-9200-4ec2-bca2-b0939426291a" x="306" y="54" width="200" height="20" fontName="阿里巴巴普惠体" vTextAlign="Middle">
+				<printWhenExpression><![CDATA[$P{customerPhone} != null]]></printWhenExpression>
 				<expression><![CDATA[$P{customerPhone}]]></expression>
 			</element>
 			<element kind="textField" uuid="01e6661b-0303-430d-b70f-f4ab6229aa2e" positionType="Float" stretchType="ContainerHeight" x="13" y="75" width="530" height="28" fontName="阿里巴巴普惠体" textAdjust="StretchHeight">
@@ -220,7 +222,7 @@
 				</box>
 			</element>
 			<element kind="textField" uuid="b6423eb2-119a-45e6-acfa-0935bb9e449c" positionType="Float" stretchType="ContainerHeight" x="510" y="0" width="55" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" bold="true" hTextAlign="Right" vTextAlign="Middle">
-				<expression><![CDATA[$F{detailNetAmount}]]></expression>
+				<expression><![CDATA[$F{detailSalesAmount}]]></expression>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				<box>
