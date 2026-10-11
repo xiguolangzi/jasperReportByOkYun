@@ -43,6 +43,7 @@
 			<text><![CDATA[订单日期 Fecha:]]></text>
 		</element>
 		<element kind="textField" uuid="bccf2851-d061-40be-910c-30f816c0441d" x="437" y="30" width="120" height="20" fontName="阿里巴巴普惠体" linkType="None" linkTarget="Self">
+			<printWhenExpression><![CDATA[$P{orderDate} != null]]></printWhenExpression>
 			<expression><![CDATA[$P{orderDate}]]></expression>
 		</element>
 		<element kind="line" uuid="9c73acee-8e39-491e-9f3b-f9e051452e93" x="0" y="60" width="555" height="1">
@@ -88,18 +89,21 @@
 			<text><![CDATA[结束时间:]]></text>
 		</element>
 		<element kind="textField" uuid="c9414d57-41d2-4a18-b254-4579c54bc3ef" x="230" y="130" width="100" height="18" fontName="阿里巴巴普惠体">
+			<printWhenExpression><![CDATA[$P{endTime} != null]]></printWhenExpression>
 			<expression><![CDATA[$P{endTime}]]></expression>
 		</element>
 		<element kind="staticText" uuid="09255266-3b54-4ccb-aee7-524edf8e1ac2" x="10" y="130" width="50" height="18" fontName="阿里巴巴普惠体" bold="true">
 			<text><![CDATA[开始时间:]]></text>
 		</element>
 		<element kind="textField" uuid="de5dd497-7409-4e95-bdae-b908605dabeb" x="60" y="130" width="100" height="18" fontName="阿里巴巴普惠体">
+			<printWhenExpression><![CDATA[$P{startTime} != null]]></printWhenExpression>
 			<expression><![CDATA[$P{startTime}]]></expression>
 		</element>
 		<element kind="staticText" uuid="c1f09752-2b70-4f3e-93b1-20804bc92159" x="360" y="130" width="50" height="18" fontName="阿里巴巴普惠体" bold="true">
 			<text><![CDATA[对货用时:]]></text>
 		</element>
 		<element kind="textField" uuid="9c0e2f39-5486-4abb-84e4-b9e8e06b9854" x="410" y="130" width="100" height="18" fontName="阿里巴巴普惠体">
+			<printWhenExpression><![CDATA[$P{differenceTime} != null]]></printWhenExpression>
 			<expression><![CDATA[$P{differenceTime}]]></expression>
 		</element>
 		<element kind="staticText" uuid="4761339a-1e62-4c11-8e20-d9d1afbe7582" x="10" y="90" width="50" height="18" fontName="阿里巴巴普惠体" bold="true">
@@ -134,33 +138,45 @@
 		<element kind="staticText" uuid="65d5a837-bf85-4477-b76f-54a8bdd1663f" x="0" y="0" width="30" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Nº]]></text>
 		</element>
-		<element kind="staticText" uuid="cde6431f-695f-4a2f-82ad-abc1f4b98542" x="30" y="0" width="33" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="cde6431f-695f-4a2f-82ad-abc1f4b98542" x="30" y="0" width="60" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Code]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="staticText" uuid="a80f72bf-5532-4bbe-aa45-d8d30d31d475" x="64" y="0" width="297" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="a80f72bf-5532-4bbe-aa45-d8d30d31d475" x="90" y="0" width="300" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[DESCRIPCIÓN]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="staticText" uuid="232013de-2d72-425d-b633-85e124def689" x="361" y="0" width="40" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="staticText" uuid="232013de-2d72-425d-b633-85e124def689" x="390" y="0" width="50" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Right" vTextAlign="Middle">
 			<text><![CDATA[P. Unit.]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="staticText" uuid="68c2607c-b96d-4458-8a05-39f8e1ea995e" x="400" y="0" width="50" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="68c2607c-b96d-4458-8a05-39f8e1ea995e" x="440" y="0" width="40" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[总数]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="staticText" uuid="9ecadc93-a118-4792-b81d-2e2860bb18f1" x="450" y="0" width="47" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="9ecadc93-a118-4792-b81d-2e2860bb18f1" x="480" y="0" width="40" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[对货数]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="staticText" uuid="fa8cdc5e-0a1e-42d9-b1dc-1349640be5c8" x="500" y="0" width="53" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="staticText" uuid="fa8cdc5e-0a1e-42d9-b1dc-1349640be5c8" x="520" y="0" width="40" height="30" backcolor="#34495E" fontName="阿里巴巴普惠体" bold="true" hTextAlign="Right" vTextAlign="Middle">
 			<text><![CDATA[缺货数]]></text>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
 		<element kind="line" uuid="d4845b7c-0abb-4052-a8c4-510df70e6128" x="0" y="30" width="560" height="1"/>
 		<element kind="line" uuid="11992b17-e880-4d9b-bf24-f8feaa5d1037" x="0" y="0" width="554" height="1"/>
 	</columnHeader>
 	<detail>
 		<band height="20">
-			<element kind="textField" uuid="29439dec-2b3d-42e7-a501-e011de3175f4" positionType="Float" stretchType="ContainerHeight" x="30" y="0" width="33" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" vTextAlign="Middle">
+			<element kind="textField" uuid="29439dec-2b3d-42e7-a501-e011de3175f4" positionType="Float" stretchType="ContainerHeight" x="30" y="0" width="60" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" bold="true" vTextAlign="Middle">
 				<expression><![CDATA[$F{productId}]]></expression>
 				<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<box>
 					<pen lineWidth="0.15" lineStyle="Dashed"/>
 					<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
@@ -169,11 +185,12 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="ea4dbf3a-8808-4be5-be7e-0ce66ca19af1" positionType="Float" stretchType="ContainerHeight" x="63" y="0" width="297" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" vTextAlign="Middle">
+			<element kind="textField" uuid="ea4dbf3a-8808-4be5-be7e-0ce66ca19af1" positionType="Float" stretchType="ContainerHeight" x="90" y="0" width="300" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" vTextAlign="Middle">
 				<expression><![CDATA[$F{nameCn}]]></expression>
 				<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<box>
 					<pen lineWidth="0.15" lineStyle="Dashed"/>
 					<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
@@ -182,7 +199,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="99f65234-349c-485e-b587-951699a894b7" positionType="Float" stretchType="ContainerHeight" x="400" y="0" width="50" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" pattern="#,##0.##" blankWhenNull="true" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="99f65234-349c-485e-b587-951699a894b7" positionType="Float" stretchType="ContainerHeight" x="440" y="0" width="40" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" pattern="#,##0.##" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
 				<expression><![CDATA[$F{totalQuantity}]]></expression>
 				<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -196,7 +213,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="7b585a70-f743-48d4-a368-240f6056d8f2" positionType="Float" stretchType="ContainerHeight" x="360" y="0" width="40" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" linkTarget="Self" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
+			<element kind="textField" uuid="7b585a70-f743-48d4-a368-240f6056d8f2" positionType="Float" stretchType="ContainerHeight" x="390" y="0" width="50" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" linkTarget="Self" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
 				<expression><![CDATA[$F{price}]]></expression>
 				<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -210,10 +227,12 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="bd9dcff8-0bc6-417a-a7d0-7fc701bf7948" positionType="Float" stretchType="ContainerHeight" x="450" y="0" width="50" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="bd9dcff8-0bc6-417a-a7d0-7fc701bf7948" positionType="Float" stretchType="ContainerHeight" x="480" y="0" width="40" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
 				<expression><![CDATA[$F{checkQuantity}]]></expression>
 				<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<box>
 					<pen lineWidth="0.15" lineStyle="Dashed"/>
 					<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
@@ -222,9 +241,10 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="b6423eb2-119a-45e6-acfa-0935bb9e449c" positionType="Float" stretchType="ContainerHeight" x="500" y="0" width="60" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
+			<element kind="textField" uuid="b6423eb2-119a-45e6-acfa-0935bb9e449c" positionType="Float" stretchType="ContainerHeight" x="520" y="0" width="40" height="20" fontName="阿里巴巴普惠体" textAdjust="StretchHeight" blankWhenNull="true" bold="true" hTextAlign="Right" vTextAlign="Middle">
 				<expression><![CDATA[$F{shortQuantity}]]></expression>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				<box>
 					<pen lineWidth="0.15" lineStyle="Dashed"/>
 					<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>

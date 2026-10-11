@@ -1,0 +1,275 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="sales_order" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
+	<property name="net.sf.jasperreports.default.font.name" value="阿里巴巴普惠体"/>
+	<property name="net.sf.jasperreports.default.pdf.font.name" value="阿里巴巴普惠体"/>
+	<property name="net.sf.jasperreports.default.pdf.encoding" value="Identity-H"/>
+	<import>net.sf.jasperreports.engine.*</import>
+	<import>java.util.*</import>
+	<import>net.sf.jasperreports.engine.data.*</import>
+	<parameter name="orderInitNo" class="java.lang.String"/>
+	<parameter name="orderNo" class="java.lang.String"/>
+	<parameter name="ConfirmDate" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="warehouseName" class="java.lang.String"/>
+	<parameter name="cajaName" class="java.lang.String"/>
+	<parameter name="totalQuantity" class="java.lang.String"/>
+	<parameter name="totalAmount" class="java.lang.String"/>
+	<parameter name="totalDiscountAmount" class="java.lang.String"/>
+	<parameter name="totalSalesAmount" class="java.lang.String"/>
+	<parameter name="customerNombre" class="java.lang.String"/>
+	<parameter name="customerNif" class="java.lang.String"/>
+	<parameter name="customerPhone" class="java.lang.String"/>
+	<parameter name="customerEmail" class="java.lang.String"/>
+	<parameter name="customerAddress" class="java.lang.String"/>
+	<parameter name="tenantName" class="java.lang.String"/>
+	<parameter name="invoiceNombre" class="java.lang.String"/>
+	<parameter name="invoiceNif" class="java.lang.String"/>
+	<parameter name="invoicePhoneNumber" class="java.lang.String"/>
+	<parameter name="tenantAddress" class="java.lang.String"/>
+	<parameter name="totalNetAmount" class="java.lang.String"/>
+	<parameter name="totalTaxAmount" class="java.lang.String"/>
+	<parameter name="printFooter" class="java.lang.String"/>
+	<parameter name="printHeader" class="java.lang.String"/>
+	<field name="rowIndex" class="java.lang.Integer"/>
+	<field name="skuCode" class="java.lang.String"/>
+	<field name="skuNo" class="java.lang.String"/>
+	<field name="skuName" class="java.lang.String"/>
+	<field name="detailPrice" class="java.lang.String"/>
+	<field name="detailDiscountInfo" class="java.lang.String"/>
+	<field name="detailQuantityInfo" class="java.lang.String"/>
+	<field name="detailNetAmount" class="java.lang.String"/>
+	<field name="detailTaxRate" class="java.lang.String"/>
+	<field name="code" class="java.lang.String"/>
+	<field name="detailSalesAmount" class="java.lang.String"/>
+	<field name="skuUnit" class="java.lang.String"/>
+	<title height="150">
+		<element kind="line" uuid="10000000-0000-0000-0000-000000000001" x="0" y="0" width="555" height="1">
+			<pen lineWidth="3.0" lineColor="#1B167A"/>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-00000000000b" x="330" y="8" width="225" height="42" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="28.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[ALBARÁN]]></text>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-00000000000c" x="310" y="56" width="125" height="18" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Nº Albarán:]]></text>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-00000000000d" x="440" y="56" width="115" height="18" fontName="阿里巴巴普惠体" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{orderInitNo}]]></expression>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-00000000000e" x="310" y="76" width="125" height="18" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Fecha:]]></text>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-00000000000f" x="440" y="76" width="115" height="18" fontName="阿里巴巴普惠体" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{ConfirmDate}]]></expression>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000013" x="0" y="10" width="300" height="22" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{customerNombre}]]></expression>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-000000000014" x="0" y="36" width="34" height="16" forecolor="#666666" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[NIF:]]></text>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000015" x="38" y="36" width="180" height="16" fontName="阿里巴巴普惠体" fontSize="8.5" vTextAlign="Middle">
+			<expression><![CDATA[$P{customerNif}]]></expression>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-000000000016" x="0" y="54" width="34" height="16" forecolor="#666666" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Tel:]]></text>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000017" x="38" y="54" width="180" height="16" fontName="阿里巴巴普惠体" fontSize="8.5" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$P{customerPhone} != null]]></printWhenExpression>
+			<expression><![CDATA[$P{customerPhone}]]></expression>
+		</element>
+		<element kind="staticText" uuid="10000000-0000-0000-0000-000000000018" x="0" y="72" width="34" height="16" forecolor="#666666" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Top">
+			<text><![CDATA[Dir:]]></text>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000019" positionType="Float" stretchType="ContainerHeight" x="38" y="72" width="240" height="30" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" vTextAlign="Top">
+			<expression><![CDATA[$P{customerAddress}]]></expression>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000020" x="0" y="112" width="300" height="18" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{tenantName}]]></expression>
+		</element>
+		<element kind="textField" uuid="10000000-0000-0000-0000-000000000021" x="0" y="130" width="300" height="16" forecolor="#666666" fontName="阿里巴巴普惠体" fontSize="8.0" vTextAlign="Middle">
+			<expression><![CDATA[
+                ($P{invoiceNif} == null ? "" : "NIF: " + $P{invoiceNif})
+                + ($P{invoicePhoneNumber} == null ? "" : "   Tel: " + $P{invoicePhoneNumber})
+                + ($P{tenantAddress} == null ? "" : "   " + $P{tenantAddress})
+            ]]></expression>
+		</element>
+	</title>
+	<pageHeader height="42">
+		<printWhenExpression><![CDATA[$V{PAGE_NUMBER} > 1]]></printWhenExpression>
+		<element kind="textField" uuid="20000000-0000-0000-0000-000000000001" x="0" y="0" width="260" height="26" fontName="阿里巴巴普惠体" fontSize="16.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{tenantName}]]></expression>
+		</element>
+		<element kind="staticText" uuid="20000000-0000-0000-0000-000000000002" x="280" y="6" width="120" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Nº Albarán:]]></text>
+		</element>
+		<element kind="component" uuid="20000000-0000-0000-0000-000000000004" x="405" y="6" width="150" height="20">
+			<component kind="barcode4j:Code128">
+				<codeExpression><![CDATA[$P{orderInitNo}]]></codeExpression>
+			</component>
+		</element>
+		<element kind="line" uuid="20000000-0000-0000-0000-000000000005" x="0" y="38" width="555" height="1">
+			<pen lineWidth="1.5" lineColor="#1B167A"/>
+		</element>
+	</pageHeader>
+	<columnHeader height="30">
+		<element kind="rectangle" uuid="30000000-0000-0000-0000-000000000000" mode="Opaque" x="0" y="0" width="555" height="28" forecolor="#2F3E4E" backcolor="#2F3E4E">
+			<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000001" x="0" y="0" width="28" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Nº]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000002" x="28" y="0" width="82" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Código]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000003" x="110" y="0" width="285" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[DESCRIPCIÓN]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000004" x="395" y="0" width="55" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[P. Unit.]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000005" x="450" y="0" width="45" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Cant.]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="30000000-0000-0000-0000-000000000006" x="495" y="0" width="60" height="28" forecolor="#FFFFFF" fontName="阿里巴巴普惠体" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Importe]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#2F3E4E"/>
+			</box>
+		</element>
+		<element kind="line" uuid="30000000-0000-0000-0000-000000000007" x="0" y="28" width="555" height="1">
+			<pen lineWidth="0.8" lineColor="#2F3E4E"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="38">
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000001" positionType="Float" stretchType="ContainerHeight" x="0" y="0" width="28" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" blankWhenNull="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{rowIndex}]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000002" positionType="Float" stretchType="ContainerHeight" x="28" y="0" width="82" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" blankWhenNull="true" bold="true" vTextAlign="Middle">
+				<expression><![CDATA[$F{code}]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000003" positionType="Float" stretchType="ContainerHeight" x="110" y="0" width="285" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" blankWhenNull="true" vTextAlign="Middle">
+				<expression><![CDATA[
+                    $F{skuName}
+                    + "\n"
+                    + "Unidad: " + ($F{skuUnit} == null ? "" : $F{skuUnit})
+                    + (
+                        $F{detailDiscountInfo} != null
+                        && !$F{detailDiscountInfo}.equals("0")
+                        ? "    Dto.%: " + $F{detailDiscountInfo}
+                        : ""
+                      )
+                ]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000004" positionType="Float" stretchType="ContainerHeight" x="395" y="0" width="55" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" blankWhenNull="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$F{detailPrice}]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000005" positionType="Float" stretchType="ContainerHeight" x="450" y="0" width="45" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" pattern="#,##0.##" blankWhenNull="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{detailQuantityInfo}]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="40000000-0000-0000-0000-000000000006" positionType="Float" stretchType="ContainerHeight" x="495" y="0" width="60" height="36" fontName="阿里巴巴普惠体" fontSize="8.5" textAdjust="StretchHeight" blankWhenNull="true" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$F{detailSalesAmount}]]></expression>
+				<box>
+					<pen lineWidth="0.0" lineColor="#DDDDDD"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#DDDDDD"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="39">
+		<element kind="line" uuid="50000000-0000-0000-0000-000000000001" x="0" y="0" width="555" height="1">
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</element>
+		<element kind="textField" uuid="84cf9bf3-c6c1-47ff-9656-ea13c3f311fa" x="0" y="4" width="390" height="24" forecolor="#777777" fontName="阿里巴巴普惠体" fontSize="8.0" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{printFooter}]]></expression>
+		</element>
+		<element kind="textField" uuid="50000000-0000-0000-0000-000000000002" x="400" y="4" width="75" height="20" fontName="阿里巴巴普惠体" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="50000000-0000-0000-0000-000000000003" x="475" y="4" width="80" height="20" fontName="阿里巴巴普惠体" fontSize="8.0" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[" / " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="210">
+		<element kind="line" uuid="60000000-0000-0000-0000-000000000001" x="0" y="0" width="555" height="1">
+			<pen lineWidth="2.0" lineColor="#1B167A"/>
+		</element>
+		<element kind="textField" uuid="0664008c-a519-4495-9fb3-31c3be729eaa" x="0" y="13" width="278" height="116" forecolor="#777777" fontName="阿里巴巴普惠体" fontSize="8.0" hTextAlign="Left" vTextAlign="Top">
+			<expression><![CDATA[$P{printHeader}]]></expression>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-000000000006" x="300" y="14" width="130" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Cantidad total:]]></text>
+		</element>
+		<element kind="textField" uuid="60000000-0000-0000-0000-000000000007" x="435" y="14" width="115" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{totalQuantity}]]></expression>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-000000000008" x="300" y="36" width="130" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Subtotal:]]></text>
+		</element>
+		<element kind="textField" uuid="60000000-0000-0000-0000-000000000009" x="435" y="36" width="115" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{totalAmount}]]></expression>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-00000000000a" x="300" y="58" width="130" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Descuento total:]]></text>
+		</element>
+		<element kind="textField" uuid="60000000-0000-0000-0000-00000000000b" x="435" y="58" width="115" height="20" fontName="阿里巴巴普惠体" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{totalDiscountAmount}]]></expression>
+		</element>
+		<element kind="line" uuid="60000000-0000-0000-0000-000000000010" x="302" y="90" width="250" height="1">
+			<pen lineWidth="1.0" lineColor="#1B167A"/>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-000000000011" x="297" y="100" width="135" height="30" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="15.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Total:]]></text>
+		</element>
+		<element kind="textField" uuid="60000000-0000-0000-0000-000000000012" x="432" y="100" width="120" height="30" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="15.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{totalSalesAmount}]]></expression>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-000000000013" x="0" y="150" width="160" height="20" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Firma / Sello del receptor:]]></text>
+		</element>
+		<element kind="line" uuid="60000000-0000-0000-0000-000000000014" x="0" y="180" width="250" height="1">
+			<pen lineWidth="0.8" lineColor="#1B167A"/>
+		</element>
+		<element kind="staticText" uuid="60000000-0000-0000-0000-000000000015" x="305" y="150" width="160" height="20" forecolor="#1B167A" fontName="阿里巴巴普惠体" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Firma / Sello del emisor:]]></text>
+		</element>
+		<element kind="line" uuid="60000000-0000-0000-0000-000000000016" x="305" y="180" width="250" height="1">
+			<pen lineWidth="0.8" lineColor="#1B167A"/>
+		</element>
+	</summary>
+</jasperReport>

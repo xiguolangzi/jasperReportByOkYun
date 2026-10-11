@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport name="sales_order" language="java"
+              pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              whenResourceMissingType="Empty"
+              uuid="91e3e649-3e6e-4400-a8db-ac5098947def">
+
+    <property name="net.sf.jasperreports.default.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="阿里巴巴普惠体"/>
+    <property name="net.sf.jasperreports.default.pdf.encoding" value="Identity-H"/>
+    <property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+
+    <import>net.sf.jasperreports.engine.*</import>
+    <import>java.util.*</import>
+    <import>net.sf.jasperreports.engine.data.*</import>
+
+    <!-- ============ 参数 ============ -->
+    <!-- 单据标识 -->
+    <parameter name="orderInitNo"        class="java.lang.String"/>
+    <parameter name="orderNo"            class="java.lang.String"/>
+    <parameter name="pedidoNo"           class="java.lang.String"/>   <!-- 新增：关联订单号 -->
+    <parameter name="ConfirmDate"        class="java.lang.String"/>
+    <parameter name="userName"           class="java.lang.String"/>
+    <parameter name="warehouseName"      class="java.lang.String"/>
+    <parameter name="cajaName"           class="java.lang.String"/>
+
+    <!-- 汇总 -->
+    <parameter name="totalQuantity"      class="java.lang.String"/>
+    <parameter name="totalAmount"        class="java.lang.String"/>
+    <parameter name="totalDiscountAmount" class="java.lang.String"/>
+    <parameter name="totalSalesAmount"   class="java.lang.String"/>
+    <parameter name="totalNetAmount"     class="java.lang.String"/>
+    <parameter name="totalTaxAmount"     class="java.lang.String"/>
+
+    <!-- 客户 -->
+    <parameter name="customerNombre"     class="java.lang.String"/>
+    <parameter name="customerNif"        class="java.lang.String"/>
+    <parameter name="customerPhone"      class="java.lang.String"/>
+    <parameter name="customerEmail"      class="java.lang.String"/>
+    <parameter name="customerAddress"    class="java.lang.String"/>
+
+    <!-- 租户（发货方） -->
+    <parameter name="tenantName"         class="java.lang.String"/>
+    <parameter name="tenantNif"          class="java.lang.String"/>   <!-- 新增 -->
+    <parameter name="tenantAddress"      class="java.lang.String"/>
+    <parameter name="tenantPhone"        class="java.lang.String"/>   <!-- 新增 -->
+    <parameter name="tenantEmail"        class="java.lang.String"/>   <!-- 新增 -->
+
+    <!-- 打印控制 -->
+    <parameter name="printHeader"        class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="printFooter"        class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="printLegalNotice"   class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["Documento no fiscal. Este albarán no constituye factura."]]></defaultValueExpression>
+    </parameter>
+
+    <!-- ============ 字段 ============ -->
+    <field name="rowIndex"          class="java.lang.Integer"/>
+    <field name="skuCode"           class="java.lang.String"/>
+    <field name="skuNo"             class="java.lang.String"/>
+    <field name="skuName"           class="java.lang.String"/>
+    <field name="detailPrice"       class="java.lang.String"/>
+    <field name="detailDiscountInfo" class="java.lang.String"/>
+    <field name="detailQuantityInfo" class="java.lang.String"/>
+    <field name="detailNetAmount"   class="java.lang.String"/>
+    <field name="detailTaxRate"     class="java.lang.String"/>
+    <field name="code"              class="java.lang.String"/>
+    <field name="detailSalesAmount" class="java.lang.String"/>
+    <field name="skuUnit"           class="java.lang.String"/>
+
+    <!-- ============ 变量 ============ -->
+    <variable name="pageNumber" class="java.lang.Integer" resetType="None" calculation="System">
+        <initialValueExpression><![CDATA[1]]></initialValueExpression>
+    </variable>
+
+    <!-- ============ TITLE ============ -->
+    <title height="130">
+        <!-- 顶部色条 -->
+        <element kind="line" uuid="t01" x="0" y="0" width="555" height="1">
+            <pen lineWidth="3.0" lineColor="#1B167A"/>
+        </element>
+
+        <!-- 单据标题 -->
+        <element kind="staticText" uuid="t02" x="380" y="8" width="172" height="42"
+                 forecolor="#1B167A" fontSize="30.0" bold="true"
+                 hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[ALBARÁN]]></text>
+        </element>
+
+        <!-- 单据编号 -->
+        <element kind="staticText" uuid="t03" x="300" y="56" width="135" height="18"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Nº Albarán:]]></text>
+        </element>
+        <element kind="textField" uuid="t04" x="440" y="56" width="115" height="18"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{orderInitNo}]]></expression>
+        </element>
+
+        <!-- 单据日期 -->
+        <element kind="staticText" uuid="t05" x="300" y="76" width="135" height="18"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Fecha:]]></text>
+        </element>
+        <element kind="textField" uuid="t06" x="440" y="76" width="115" height="18"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{ConfirmDate}]]></expression>
+        </element>
+
+        <!-- 关联订单号（新增，审计链） -->
+        <element kind="staticText" uuid="t07" x="300" y="96" width="135" height="16"
+                 fontSize="8.0" forecolor="#666666" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Pedido ref.:]]></text>
+        </element>
+        <element kind="textField" uuid="t08" x="440" y="96" width="115" height="16"
+                 fontSize="8.0" forecolor="#666666" hTextAlign="Right" vTextAlign="Middle"
+                 isBlankWhenNull="true">
+            <expression><![CDATA[$P{pedidoNo} == null ? "" : $P{pedidoNo}]]></expression>
+        </element>
+
+        <!-- 客户信息 -->
+        <element kind="textField" uuid="t10" x="0" y="10" width="290" height="22"
+                 forecolor="#1B167A" fontSize="14.0" bold="true" vTextAlign="Middle"
+                 isBlankWhenNull="true">
+            <expression><![CDATA[$P{customerNombre}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="t11" x="0" y="36" width="34" height="16"
+                 forecolor="#666666" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[NIF:]]></text>
+        </element>
+        <element kind="textField" uuid="t12" x="38" y="36" width="200" height="16"
+                 fontSize="8.5" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{customerNif}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="t13" x="0" y="54" width="34" height="16"
+                 forecolor="#666666" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Tel:]]></text>
+        </element>
+        <element kind="textField" uuid="t14" x="38" y="54" width="200" height="16"
+                 fontSize="8.5" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{customerPhone} == null ? "" : $P{customerPhone}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="t15" x="0" y="72" width="34" height="16"
+                 forecolor="#666666" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Top">
+            <text><![CDATA[Dir:]]></text>
+        </element>
+        <element kind="textField" uuid="t16" x="38" y="72" width="240" height="30"
+                 fontSize="8.5" textAdjust="StretchHeight" vTextAlign="Top" isBlankWhenNull="true">
+            <expression><![CDATA[$P{customerAddress}]]></expression>
+        </element>
+
+        <!-- 发货方信息（第 1 页也显示，合规） -->
+        <element kind="staticText" uuid="t20" x="0" y="108" width="555" height="14"
+                 forecolor="#666666" fontSize="7.5" hTextAlign="Left" vTextAlign="Middle"
+                 isBlankWhenNull="true">
+            <expression><![CDATA[
+                ($P{tenantName}    == null ? "" : $P{tenantName}) +
+                ($P{tenantNif}     == null ? "" : "  |  NIF: " + $P{tenantNif}) +
+                ($P{tenantAddress} == null ? "" : "  |  " + $P{tenantAddress}) +
+                ($P{tenantPhone}   == null ? "" : "  |  Tel: " + $P{tenantPhone})
+            ]]></expression>
+        </element>
+    </title>
+
+    <!-- ============ PAGE HEADER (第2页起) ============ -->
+    <pageHeader height="46">
+        <printWhenExpression><![CDATA[$V{PAGE_NUMBER} > 1]]></printWhenExpression>
+
+        <element kind="textField" uuid="ph01" x="0" y="0" width="260" height="26"
+                 fontSize="18.0" bold="true" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{tenantName}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="ph02" x="290" y="6" width="130" height="20"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Nº Albarán:]]></text>
+        </element>
+        <element kind="component" uuid="ph03" x="425" y="6" width="130" height="20">
+            <component kind="barcode4j:Code128">
+                <codeExpression><![CDATA[$P{orderInitNo}]]></codeExpression>
+                <moduleWidth>1.2</moduleWidth>
+                <textPosition>None</textPosition>
+            </component>
+        </element>
+
+        <element kind="line" uuid="ph04" x="0" y="42" width="555" height="1">
+            <pen lineWidth="1.5" lineColor="#1B167A"/>
+        </element>
+    </pageHeader>
+
+    <!-- ============ COLUMN HEADER ============ -->
+    <columnHeader height="30">
+        <element kind="rectangle" uuid="ch01" mode="Opaque"
+                 x="0" y="0" width="555" height="28"
+                 forecolor="#2F3E4E" backcolor="#2F3E4E">
+            <pen lineWidth="0.0" lineColor="#2F3E4E"/>
+        </element>
+
+        <element kind="staticText" uuid="ch02" x="0" y="0" width="28" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Nº]]></text>
+        </element>
+        <element kind="staticText" uuid="ch03" x="28" y="0" width="82" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+            <text><![CDATA[Code]]></text>
+        </element>
+        <element kind="staticText" uuid="ch04" x="110" y="0" width="275" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+            <text><![CDATA[DESCRIPCIÓN]]></text>
+        </element>
+        <element kind="staticText" uuid="ch05" x="385" y="0" width="60" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[P. Unit.]]></text>
+        </element>
+        <element kind="staticText" uuid="ch06" x="445" y="0" width="50" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Cant.]]></text>
+        </element>
+        <element kind="staticText" uuid="ch07" x="495" y="0" width="60" height="28"
+                 forecolor="#FFFFFF" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Imp.]]></text>
+        </element>
+
+        <element kind="line" uuid="ch08" x="0" y="28" width="555" height="1">
+            <pen lineWidth="0.8" lineColor="#2F3E4E"/>
+        </element>
+    </columnHeader>
+
+    <!-- ============ DETAIL ============ -->
+    <detail>
+        <band height="38">
+            <!-- Nº -->
+            <element kind="textField" uuid="d01" positionType="Float" stretchType="ContainerHeight"
+                     x="0" y="0" width="28" height="36" fontSize="8.5"
+                     blankWhenNull="true" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{rowIndex}]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+
+            <!-- Code -->
+            <element kind="textField" uuid="d02" positionType="Float" stretchType="ContainerHeight"
+                     x="28" y="0" width="82" height="36" fontSize="8.5"
+                     textAdjust="StretchHeight" blankWhenNull="true" bold="true" vTextAlign="Middle">
+                <expression><![CDATA[$F{code}]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+
+            <!-- 描述 -->
+            <element kind="textField" uuid="d03" positionType="Float" stretchType="ContainerHeight"
+                     x="110" y="0" width="275" height="36" fontSize="8.5"
+                     textAdjust="StretchHeight" blankWhenNull="true" vTextAlign="Middle">
+                <expression><![CDATA[
+                    $F{skuName}
+                    + ($F{skuUnit} == null ? "" : "\nUnidad: " + $F{skuUnit})
+                    + (($F{detailDiscountInfo} != null && !$F{detailDiscountInfo}.equals("0"))
+                        ? "    Dto.%: " + $F{detailDiscountInfo} : "")
+                ]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+
+            <!-- 单价 -->
+            <element kind="textField" uuid="d04" positionType="Float" stretchType="ContainerHeight"
+                     x="385" y="0" width="60" height="36" fontSize="8.5"
+                     textAdjust="StretchHeight" blankWhenNull="true"
+                     hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{detailPrice}]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+
+            <!-- 数量：字段为 String，去掉无效 pattern -->
+            <element kind="textField" uuid="d05" positionType="Float" stretchType="ContainerHeight"
+                     x="445" y="0" width="50" height="36" fontSize="8.5"
+                     textAdjust="StretchHeight" blankWhenNull="true"
+                     hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{detailQuantityInfo}]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+
+            <!-- 金额 -->
+            <element kind="textField" uuid="d06" positionType="Float" stretchType="ContainerHeight"
+                     x="495" y="0" width="60" height="36" fontSize="8.5"
+                     textAdjust="StretchHeight" blankWhenNull="true" bold="true"
+                     hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{detailSalesAmount}]]></expression>
+                <box><bottomPen lineWidth="0.4" lineColor="#DDDDDD"/></box>
+            </element>
+        </band>
+    </detail>
+
+    <!-- ============ PAGE FOOTER ============ -->
+    <pageFooter height="40">
+        <element kind="line" uuid="pf01" x="0" y="0" width="555" height="1">
+            <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+        </element>
+
+        <!-- 免责声明（左） -->
+        <element kind="textField" uuid="pf02" x="0" y="4" width="300" height="24"
+                 forecolor="#777777" fontSize="7.5" hTextAlign="Left" vTextAlign="Middle"
+                 isBlankWhenNull="true">
+            <expression><![CDATA[$P{printFooter}]]></expression>
+        </element>
+
+        <!-- 页码 -->
+        <element kind="textField" uuid="pf03" x="400" y="4" width="75" height="20"
+                 fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+        </element>
+        <element kind="textField" uuid="pf04" x="475" y="4" width="80" height="20"
+                 fontSize="8.0" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle">
+            <expression><![CDATA[" / " + $V{PAGE_NUMBER}]]></expression>
+        </element>
+
+        <!-- 法定声明 -->
+        <element kind="staticText" uuid="pf05" x="0" y="26" width="555" height="12"
+                 forecolor="#999999" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Documento no fiscal. Este albarán no constituye factura.]]></text>
+        </element>
+    </pageFooter>
+
+    <!-- ============ SUMMARY ============ -->
+    <summary height="180">
+        <element kind="line" uuid="s01" x="0" y="0" width="555" height="1">
+            <pen lineWidth="2.0" lineColor="#1B167A"/>
+        </element>
+
+        <!-- 左侧：备注 / 打印头 -->
+        <element kind="textField" uuid="s02" x="0" y="20" width="278" height="110"
+                 forecolor="#777777" fontSize="8.0" hTextAlign="Left" vTextAlign="Top"
+                 isBlankWhenNull="true">
+            <expression><![CDATA[$P{printHeader}]]></expression>
+        </element>
+
+        <!-- 右侧汇总 -->
+        <element kind="staticText" uuid="s03" x="300" y="14" width="130" height="20"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Cantidad total:]]></text>
+        </element>
+        <element kind="textField" uuid="s04" x="435" y="14" width="115" height="20"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$P{totalQuantity}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="s05" x="300" y="36" width="130" height="20"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Subtotal:]]></text>
+        </element>
+        <element kind="textField" uuid="s06" x="435" y="36" width="115" height="20"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$P{totalAmount}]]></expression>
+        </element>
+
+        <element kind="staticText" uuid="s07" x="300" y="58" width="130" height="20"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Descuento total:]]></text>
+        </element>
+        <element kind="textField" uuid="s08" x="435" y="58" width="115" height="20"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$P{totalDiscountAmount}]]></expression>
+        </element>
+
+        <!-- IVA（新增，合规） -->
+        <element kind="staticText" uuid="s09" x="300" y="80" width="130" height="20"
+                 fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[IVA:]]></text>
+        </element>
+        <element kind="textField" uuid="s10" x="435" y="80" width="115" height="20"
+                 fontSize="9.0" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true">
+            <expression><![CDATA[$P{totalTaxAmount}]]></expression>
+        </element>
+
+        <element kind="line" uuid="s11" x="302" y="106" width="250" height="1">
+            <pen lineWidth="1.0" lineColor="#1B167A"/>
+        </element>
+
+        <element kind="staticText" uuid="s12" x="297" y="112" width="135" height="30"
+                 forecolor="#1B167A" fontSize="15.0" bold="true"
+                 hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[Total:]]></text>
+        </element>
+        <element kind="textField" uuid="s13" x="432" y="112" width="120" height="30"
+                 forecolor="#1B167A" fontSize="15.0" bold="true"
+                 hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$P{totalSalesAmount}]]></expression>
+        </element>
+
+        <!-- 签收区（新增，ALBARÁN 核心） -->
+        <element kind="line" uuid="s20" x="0" y="150" width="250" height="1">
+            <pen lineWidth="0.5" lineColor="#999999"/>
+        </element>
+        <element kind="staticText" uuid="s21" x="0" y="152" width="250" height="14"
+                 forecolor="#666666" fontSize="8.0" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Firma y fecha de recepción]]></text>
+        </element>
+    </summary>
+</jasperReport>
